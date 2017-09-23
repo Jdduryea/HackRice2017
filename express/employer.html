@@ -1,41 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Employer Tool</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<meta charset="utf-8">
+  	<title>Student Portal</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Custom Fonts from Google -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  	<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 
 
 <body class="container">
-  <h1>Employer Search Tool</h1>
-  
 
- 
-  <input type="text" placeholder="Candidate Name" id="candidate_name" />
-  <input type="text" placeholder = "Candidate University" id="candidate_university" />
-  <input type="text" placeholder = "Candidate Key" id="candidate_key" />
 
-  <a href="#" onclick="searchForCandidates()" class="btn btn-primary">Search Candidates</a>
+	<div data-role="page">
 
- <!-- Display results -->
- <h4> Search Results</h4>
-  <div class="table-responsive">
-    <table id="resultsTable", class="table table-bordered">
-      <thead>
-        <tr>
-        </tr>
-      </thead>
-      
-    </table>
-  </div>
 
+	  <div data-role="main" class="ui-content">
+	    
+	    <h1>Student Portal</h1>
+  		<div>
+  			<input type="text" placeholder="Name" id="candidate_name" />
+  			<input type="text" placeholder = "Key" id="candidate_key" />	
+  		</div>
+  		
+
+	    <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Send Data</a>
+
+	    <div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;">
+	      <!-- <form method="post" action="/action_page_post.php"> -->
+	      <form>
+	        <div>
+	          <h3>What information would you like to send?</h3>
+	          
+	          
+	          <label for="gpa">College GPA (4.0)</label>
+	          <input type="checkbox" name="gpa" id="gpa" value="1" data-mini="true">
+	          
+	         
+	          <label for="degree">Degree (Computer Science)</label>
+	          <input type="checkbox" name="degree" id="degree" value="1" data-mini="true">
+	          
+	          <label for="school">University (Rice University)</label>
+	          <input type="checkbox" name="school" id="school" value="1" data-mini="true">
+
+
+	           <label for="email" class="ui-hidden-accessible">Reciever Email:</label>
+	          <input type="email" name="email" id="email" placeholder="email to send information to">
+	          
+	          <input onclick="alert('Your data was sent!')" type="submit" data-inline="true" value="Send">
+	        </div>
+	      </form>
+	    </div>
+	  </div>
+
+	</div> 
 
 
 </body>
-<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="./employ.js"></script>
 
 </html>
