@@ -1,3 +1,25 @@
-"scripts": {
-  "test": "cd truffle && truffle deploy && truffle test ./myTruffleTest.js && cd .. && npm run myOtherTests"
+{
+  "name": "HackRice2017",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jdduryea/HackRice2017.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jdduryea/HackRice2017/issues"
+  },
+  "homepage": "https://github.com/Jdduryea/HackRice2017#readme"
 }
