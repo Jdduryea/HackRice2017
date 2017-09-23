@@ -6,6 +6,19 @@ const bodyParser= require('body-parser')
 
 app.get('/', function(req, res){
   try{
+
+    res.render('index.ejs');
+}
+catch(er){
+  console.log(er)
+}
+
+})
+
+app.use(express.static(__dirname + '/static'));
+
+app.get('/university', function(req, res){
+  try{
     //res.sendFile(__dirname + '/university.html')
   const contractArtifact = require('../build/contracts/CredentialStore.json')
   const truffleContractFactory = require('truffle-contract')
