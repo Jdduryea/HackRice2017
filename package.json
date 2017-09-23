@@ -1,0 +1,3 @@
+"scripts": {
+  "test": "cd truffle && truffle deploy && truffle test ./myTruffleTest.js && cd .. && npm run myOtherTests"
+}
