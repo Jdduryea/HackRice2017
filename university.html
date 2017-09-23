@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Univeristy Registrar Tool</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="container">
+  <h1>University Registrar</h1>
+  <div class="table-responsive">
+    <table id="myTable", class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Degree Candidate Name</th>
+          <th>Did Graduate</th>
+        </tr>
+      </thead>
+      
+    </table>
+  </div>
+
+ 
+  <input type="text" placeholder="Name" id="candidate_name" />
+  <input type="text" placeholder = "Did Graduate (Y/N)" id="did_graduate" />
+
+  <a href="#" onclick="addCandidateTest()" class="btn btn-primary">Add Degree Candidate</a>
+
+
+</body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="./index.js"></script>
+<script src="./univ.js"></script>
+
+</html>
