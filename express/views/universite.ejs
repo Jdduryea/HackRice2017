@@ -20,7 +20,10 @@
         <% students.forEach(function(student) { %>
             <tr>
               <td><%= student.name %> </td>
-              <td><%= student.did_graduate %></td>
+              <td><%= student.field_of_study %> </td>
+              <td><%= student.degree_type %> </td>
+              <td><%= student.complete %> </td>
+              <td><%= student.year %> </td>
             </tr>
         <% }); %>
       
