@@ -1,10 +1,3 @@
-// Set up web3
-var config = require('./config.js');
-config.web3.eth.X
-
-
-
-
 function searchForCandidates() {
     var name = document.getElementById('candidate_name').value;
     var key = document.getElementById('candidate_key').value;
