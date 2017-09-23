@@ -22,11 +22,8 @@ contract CredentialStore {
     mapping(address => string) universityOwnerMap;
     
     // OWNER INTERFACE
-    function authorize(address universityAddr, string universityName) onlyOwner public returns (bool) {
+    function authorize(address universityAddr, string universityName) onlyOwner public {
         universityOwnerMap[universityAddr] = universityName;
-        return true;
-        // Test: 0xeda84d97e05480892d53a87c6eb3bce23362b3e7
-        // name: Rice
     }
     
     // UNIVERSITY INTERFACE
