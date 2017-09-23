@@ -25,8 +25,9 @@ app.get('/university', function(req, res){
   const CredentialStore = truffleContractFactory(contractArtifact)
   //console.log(CredentialStore)
   	var students = [
-        { name: 'asdf', did_graduate: 'Y'},
-        { name: 'jkl;', did_graduate: 'N' }
+        { name: 'Kunal Shah', field_of_study: 'Computer Science', degree_type: 'BA', complete: false, year: 2018},
+        { name: 'Johnathon Berry', field_of_study: 'Mechanical Engineering', degree_type: 'BA', complete: false, year: 2020}
+
     ];
 
     res.render('universite.ejs', {
