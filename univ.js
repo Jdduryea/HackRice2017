@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
 
-function addCandidateTest(name,did_graduate) {
+function addCandidateTest() {
     var name = document.getElementById('candidate_name').value;
     var did_graduate = document.getElementById('did_graduate').value;
 

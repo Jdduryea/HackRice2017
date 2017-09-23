@@ -5,7 +5,7 @@ config.web3.eth.X
 
 
 
-function searchForCandidates(name,did_graduate) {
+function searchForCandidates() {
     var name = document.getElementById('candidate_name').value;
     var key = document.getElementById('candidate_key').value;
     var univ = document.getElementById('candidate_university').value;
