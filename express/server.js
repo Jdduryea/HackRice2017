@@ -16,6 +16,15 @@ catch(er){
 
 })
 
+app.get('/auth', function(req, res){
+  try{
+
+    res.render('auth.ejs');
+}
+catch(er){
+  console.log(er)
+}
+
 app.get('/student', function(req, res){
   try{
 
