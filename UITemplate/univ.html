@@ -4,26 +4,8 @@
   <title>Univeristy Registrar Tool</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="css/custom.css" rel="stylesheet">
-
-    <!-- Custom Fonts from Google -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
-
-
 
 <body class="container">
 
@@ -32,8 +14,13 @@
         <div class="container">
             <!-- Logo and responsive toggle -->
             <div class="navbar-header">
-              
-                <a class="navbar-brand" href="/index">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../UITemplate/index.html">
                   <span class="glyphicon glyphicon-fire"></span> 
                   Cryptocreditor
                 </a>
@@ -44,7 +31,6 @@
 
 
   <h1 style = "margin-top: 100px" >University Registrar</h1>
-  <h1> <% address %> </h1>
   <div class="table-responsive">
     <table id="myTable", class="table table-bordered">
       <thead>
@@ -56,7 +42,18 @@
           <th>Year Earned/Expected</th>
           <th>GPA</th>
         </tr>
-      </thead>  
+      </thead>
+      
+        <% students.forEach(function(student) { %>
+            <tr>
+              <td><%= student.name %> </td>
+              <td><%= student.degree_type %> </td>
+              <td><%= student.completed %> </td>
+              <td><%= student.field_of_study %> </td>
+              <td><%= student.year %> </td>
+              <td><%= student.gpa %> </td>
+            </tr>
+        <% }); %>
       
     </table>
   </div>
