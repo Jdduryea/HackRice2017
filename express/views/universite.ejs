@@ -23,10 +23,11 @@
         <% students.forEach(function(student) { %>
             <tr>
               <td><%= student.name %> </td>
-              <td><%= student.field_of_study %> </td>
               <td><%= student.degree_type %> </td>
               <td><%= student.completed %> </td>
+              <td><%= student.field_of_study %> </td>
               <td><%= student.year %> </td>
+              <td><%= student.gpa %> </td>
             </tr>
         <% }); %>
       
@@ -38,8 +39,24 @@
 
   <input type="text" placeholder="Name" id="name" name="name"/>
   <input type="text" placeholder = "Field of Study" id="field_of_study" name="field_of_study"/>
-  <input type="text" placeholder="Degree Type" id="degree_type" name="degree_type"/>
-  <input type="text" placeholder="Completed" id="completed" name="completed"/>
+  <select type="text" id="degree_type" name="degree_type">
+    <option value="other">Other</option>
+    <option value="ged">G.E.D.</option>
+    <option value="ba">BA</option>
+    <option value="ba">BS</option>
+    <option value="ma">MA</option>
+    <option value="ma">MS</option>
+    <option value="mba">MBA</option>
+    <option value="pmh">MPH</option>
+    <option value="md">MD</option>
+    <option value="jd">JD</option>
+    <option value="phd">PhD</option>
+
+  </select>
+  <select type="text" id="completed" name="completed">
+    <option value="complete">Complete</option>
+    <option value="pending">Pending</option>
+  </select>
   <input type="text" placeholder="Year Earned" id="year" name="year"/>
 
   <button onclick="" type= "submit" class="btn btn-primary">Add Degree Candidate</button>
