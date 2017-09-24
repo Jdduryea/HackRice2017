@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../express/auth.js"></script>>
 </head>
 
 
@@ -52,19 +53,14 @@
 
 
 
-    <section class="intro">
+  <section class="intro">
   <div data-role="page" style="margin-top: 50px">
-
-
     <div data-role="main" class="ui-content">
-      
       <h1>Authentification</h1>
       <div>
-        <input type="text" size = "30"  placeholder="Private Key" id="candidate_name" />
-              <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Authenticate</a>
+        <input type="text" size = "30"  placeholder="Private Key" id="private_key" />
+              <a href="#myPopup" onclick="authenticate()" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Authenticate</a>
       </div>
-      
-
 
   </div> 
   </section>
