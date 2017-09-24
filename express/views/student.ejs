@@ -67,6 +67,32 @@
       </div>
       </form>
       
+      <div class="table-responsive">
+    <table id="myTable", class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Degree Holder/Candidate Name</th>
+          <th>Degree Type</th>
+          <th>Completed</th>
+          <th>Field of Study</th>
+          <th>Year Earned/Expected</th>
+          <th>GPA</th>
+        </tr>
+      </thead>
+      
+        <% info.forEach(function(student) { %>
+            <tr>
+              <td><%= student.name %> </td>
+              <td><%= student.degree_type %> </td>
+              <td><%= student.completed %> </td>
+              <td><%= student.field_of_study %> </td>
+              <td><%= student.year %> </td>
+              <td><%= student.gpa %> </td>
+            </tr>
+        <% }); %>
+      
+    </table>
+  </div>
 
       <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Send Data</a>
 
