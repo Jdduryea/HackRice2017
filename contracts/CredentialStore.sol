@@ -1,12 +1,29 @@
 pragma solidity^0.4.11;
 contract CredentialStore {
+    struct UniversityCredential {
+        string degreeType;
+        bool completed;
+        uint yearOfGraduation;
+        string fieldOfStudy;
+        uint gpa;
+    }
+
     struct Student {
-        mapping(string => bool) graduatedFrom;
+        // maps university names to credentials
+        mapping(string => UniversityCredential) universityMap;
         string name;
     }
+
+    // public address mapped to university name (owner of name) 
+    mapping(address => string) public accreditedUniversities;
     
+    // public address mapped to student which owns domain
+    mapping(address => Student) public studentMap;
+    
+    // access credentials with this procedure:
+    // credential = contract.studentMap[studentAddr].universityMap[universityName]
+
     address owner;
-    
     function CredentialStore() public {
         owner = msg.sender;
     }
@@ -15,28 +32,38 @@ contract CredentialStore {
         require(msg.sender == owner);
         _;
     }
-    // public address mapped to student which owns domain
-    mapping(address => Student) studentMap;
-    
-    // public address mapped to university name (owner of name) 
-    mapping(address => string) universityOwnerMap;
     
     // OWNER INTERFACE
-    function authorize(address universityAddr, string universityName) onlyOwner public returns (bool) {
-        universityOwnerMap[universityAddr] = universityName;
-        return true;
-        // Test: 0xeda84d97e05480892d53a87c6eb3bce23362b3e7
-        // name: Rice
+    function authorizeUniversity(
+        address _universityAddr, 
+        string _universityName) onlyOwner public 
+    {
+        accreditedUniversities[_universityAddr] = _universityName;
+    }
+
+    function identifyStudent(
+        address _studentAddr, 
+        string _studentName) onlyOwner public 
+    {
+        studentMap[_studentAddr].name = _studentName;
     }
     
     // UNIVERSITY INTERFACE
-    function graduate(address studentAddr) external {
-        string universityName = universityOwnerMap[msg.sender];
-        studentMap[studentAddr].graduatedFrom[universityName] = true;
-    }
-    
-    // EMPLOYER INTERFACE
-    function isGraduated(address studentAddr, string universityName) public constant returns (bool)  {
-        return studentMap[studentAddr].graduatedFrom[universityName];
+    function update(
+        address _studentAddr, 
+        string _degreeType, 
+        bool _completed,
+        uint _yearOfGraduation,
+        string _fieldOfStudy,
+        uint _gpa) external 
+    {
+        string universityName = accreditedUniversities[msg.sender];
+        studentMap[_studentAddr].universityMap[universityName] = UniversityCredential({
+            degreeType: _degreeType,
+            completed: _completed,
+            yearOfGraduation: _yearOfGraduation,
+            fieldOfStudy: _fieldOfStudy,
+            gpa: _gpa
+        });
     }
 }

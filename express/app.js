@@ -1,26 +1,31 @@
-const express = require('express')
-const app = express()
+var express = require('express')
+var app = express()
 
-const fs = require('fs')
-const config = JSON.parse(fs.readFileSync('../config.json'));
+var fs = require('fs')
+var contractJSON = JSON.parse(fs.readFileSync('./build/contracts/CredentialStore.json'))
+var accountConfig = JSON.parse(fs.readFileSync('./build/accounts.json'))
 
-const Web3 = require('web3')
-var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:"+config.ports.testrpc));
+var Web3 = require('web3')
+var web3provider = new Web3.providers.HttpProvider("http://localhost:8545")
+var contract = require('truffle-contract')
 
-const address = '0xa7cb6015301786655b6fc1eb1b6e174df117b7de';
-const owner = '0x0f7d5c57d47c5d345dff92fd9322496622ef2923';
+var CredentialStore = contract(contractJSON)
+CredentialStore.setProvider(web3provider)
 
-const contractJSON = JSON.parse(fs.readFileSync('../build/contracts/CredentialStore.json'));
-var CredentialStore = new web3.eth.Contract(contractJSON.abi, address, {from: owner});
-
-// CredentialStore.methods()
-
-console.log(CredentialStore.methods);
+return CredentialStore.deployed()
+.then(async (instance) => {
+	var name = await instance.accreditedUniversities.call(accountConfig.universities[0])
+	console.log(name)
+	tx = await instance.authorizeUniversity(accountConfig.universities[0], "RICE UNIVERSITY CHANGED!", {from: accountConfig.owner})
+	console.log(tx)
+	var name = await instance.accreditedUniversities.call(accountConfig.universities[0])
+	console.log(name)
+})
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.listen(config.ports.express, function () {
-  console.log('Example app listening on port '+config.ports.express+'!')
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
 })
