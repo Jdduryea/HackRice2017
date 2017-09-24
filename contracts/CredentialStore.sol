@@ -66,4 +66,28 @@ contract CredentialStore {
             gpa: _gpa
         });
     }
+
+    function getName(address _studentAddr) constant returns (string) {
+        return studentMap[_studentAddr].name;
+    }
+
+    function getDegreeType(address _studentAddr, string _universityName) constant returns (string) {
+        return studentMap[_studentAddr].universityMap[_universityName].degreeType;
+    }
+
+    function getCompleted(address _studentAddr, string _universityName) constant returns (bool) {
+        return studentMap[_studentAddr].universityMap[_universityName].completed;
+    }
+
+    function getYearOfGraduation(address _studentAddr, string _universityName) constant returns (uint) {
+        return studentMap[_studentAddr].universityMap[_universityName].yearOfGraduation;
+    }
+
+    function getFieldOfStudy(address _studentAddr, string _universityName) constant returns (string) {
+        return studentMap[_studentAddr].universityMap[_universityName].fieldOfStudy;
+    }
+
+    function getGPA(address _studentAddr, string _universityName) constant returns (uint) {
+        return studentMap[_studentAddr].universityMap[_universityName].gpa;
+    }
 }
