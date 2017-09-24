@@ -68,15 +68,15 @@ app.get('/university', function(req, res){
   try{
     //res.sendFile(__dirname + '/university.html')
   //console.log(CredentialStore)
-  	// var students = [
-   //      { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
-   //      { name: 'Johnathon Berry', degree_type: 'BA', completed: false, year: 2020, field_of_study: 'Mechanical Engineering', gpa: 220},
+  	var students = [
+        { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
+        { name: 'Johnathon Berry', degree_type: 'BA', completed: false, year: 2020, field_of_study: 'Mechanical Engineering', gpa: 220},
 
 
-   //  ];
+    ];
 
     res.render('universite.ejs', {
-        address: address
+        address: address, students: students
     });
 }
 catch(er){
@@ -90,6 +90,12 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 
 app.post('/send_info_university', (req, res) => {
+  // Write thing
+  // REturn array
+  var students = [];
+  res.render('universite.ejs', {
+        address: address, students: students
+    });
  
 })
 
@@ -103,7 +109,13 @@ app.post('/auth_post', (req, res) => {
  // console.log("univ: " + univ);
  //  return univ;
  var public_address = 'asdf'
- res.render('universite.ejs', {address: public_address})
+ var students = [
+        { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
+        { name: 'Johnathon Berry', degree_type: 'BA', completed: false, year: 2020, field_of_study: 'Mechanical Engineering', gpa: 220},
+
+
+   ];
+ res.render('universite.ejs', {address: public_address, students : students})
 })
 
 

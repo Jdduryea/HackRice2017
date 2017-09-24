@@ -55,7 +55,18 @@
           <th>GPA</th>
         </tr>
       </thead>  
-      
+
+      <% students.forEach(function(student) { %>
+            <tr>
+              <td><%= student.name %> </td>
+              <td><%= student.degree_type %> </td>
+              <td><%= student.completed %> </td>
+              <td><%= student.field_of_study %> </td>
+              <td><%= student.year %> </td>
+              <td><%= student.gpa %> </td>
+            </tr>
+        <% }); %>
+
     </table>
   </div>
 
