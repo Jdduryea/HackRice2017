@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src = "./employ.js"></script>
 </head>
 
 
@@ -72,7 +73,7 @@
 	  <div data-role="main" class="ui-content">
 	    
 	    <h1>Student Portal</h1>
-  		<div style = "max-width: 600px; text-align: center;">
+  		<div>
   			<input type="text" size = "30"  placeholder="Name" id="candidate_name" />
   			<input type="text" size = "30" placeholder = "Key" id="candidate_key" />	
   		</div>
@@ -85,11 +86,14 @@
 	      <form>
 	        <div>
 	          <h3>What information would you like to send?</h3>
-	          student.{name, degree_type, completed, year, field_of_study, gpa}
-	          
+<!-- 	          student.{name, degree_type, completed, year, field_of_study, gpa}
+ -->	          
 
-              <label for="degree_type">Degree Type (4.0)</label>
+              <label for="degree_type">Degree Type (Bachelors)</label>
               <input type="checkbox" name="degree_type" id="degree_type" value="1" data-mini="true">
+
+              <label for="grad_year">Graduation Year (2020)</label>
+              <input type="checkbox" name="grad_year" id="grad_year" value="1" data-mini="true">
 
 	          <label for="gpa">College GPA (4.0)</label>
 	          <input type="checkbox" name="gpa" id="gpa" value="1" data-mini="true">
@@ -105,7 +109,7 @@
 	           <label for="email" class="ui-hidden-accessible">Reciever Email:</label>
 	          <input type="email" name="email" id="email" placeholder="email to send information to">
 	          
-	          <input onclick="alert('Your data was sent!')" type="submit" data-inline="true" value="Send">
+	          <input onclick="alert('Your data was sent!'); test()" type="submit" data-inline="true" value="Send">
 	        </div>
 	      </form>
 	    </div>
