@@ -25,6 +25,8 @@ catch(er){
   console.log(er)
 }
 
+})
+
 app.get('/student', function(req, res){
   try{
 
