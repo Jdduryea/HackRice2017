@@ -3,6 +3,8 @@ const app = express()
 const bodyParser= require('body-parser')
 //app.set('view engine', 'ejs')
 
+app.use(express.static(__dirname + '/static'));
+
 app.get('/', function(req, res){
   try{
 
@@ -14,14 +16,22 @@ catch(er){
 
 })
 
-app.use(express.static(__dirname + '/static'));
+app.get('/student', function(req, res){
+  try{
+
+    res.render('student.ejs');
+}
+catch(er){
+  console.log(er)
+}
+
+})
+
+
 
 app.get('/university', function(req, res){
   try{
     //res.sendFile(__dirname + '/university.html')
-  const contractArtifact = require('../build/contracts/CredentialStore.json')
-  const truffleContractFactory = require('truffle-contract')
-  const CredentialStore = truffleContractFactory(contractArtifact)
   //console.log(CredentialStore)
   	var students = [
         { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
@@ -43,10 +53,13 @@ catch(er){
 
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.post('/student', (req, res) => {
+app.post('/send_info_university', (req, res) => {
  console.log(req.body)
 })
 
+app.post('/send_info_student', (req, res) => {
+ console.log(req.body)
+})
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
