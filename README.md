@@ -17,7 +17,7 @@ We've built a decentralized application on top of the Ethereum network to allow 
 
 Our solution uses the blockchain as a secure and immutable ledger of degree candidates and holders. Accredited universities are granted write access to denote candidates and degree holders and students can send specified academic qualifications to an employer using the student portal. 
 
-# Why it's better
+## Why it's better
 The Ethereum networks and the underlying blockchain technology presents an advantage in being decentralized from a lone authority. This makes the process of record keeping invulnerable to malicious attack or unwanted alterations. 
 
 The secure and decentralized record keeping process create a system of trust between students, universities, and employers.
