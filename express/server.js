@@ -1,6 +1,18 @@
 const express = require('express')
 const app = express()
 const bodyParser= require('body-parser')
+
+var fs = require('fs')
+var contractJSON = JSON.parse(fs.readFileSync('./build/contracts/CredentialStore.json'))
+var accountConfig = JSON.parse(fs.readFileSync('./build/accounts.json'))
+
+var Web3 = require('web3')
+var web3provider = new Web3.providers.HttpProvider("http://localhost:8545")
+var contract = require('truffle-contract')
+
+var CredentialStore = contract(contractJSON)
+CredentialStore.setProvider(web3provider)
+
 //app.set('view engine', 'ejs')
 
 app.use(express.static(__dirname + '/static'));
@@ -29,6 +41,7 @@ catch(er){
 
 app.get('/student', function(req, res){
   try{
+
 
     res.render('student.ejs');
 }
@@ -65,12 +78,17 @@ catch(er){
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.post('/send_info_university', (req, res) => {
- console.log(req.body)
+ 
 })
 
 app.post('/send_info_student', (req, res) => {
- console.log(req.body)
+  
+  var studentKey = req.body.key;
+  var instancePromise = CredentialStore.deployed();
+  var studentName = instancePromise.then((instance) => instance.studentMap[studentKey].name.call());
+ console.log(studentName)
 })
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
