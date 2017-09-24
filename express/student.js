@@ -1,3 +1,9 @@
+function sendData(){
+    console.log("Simulate sent data");
+}
+
+
+
 function searchForCandidates() {
     var name = document.getElementById('candidate_name').value;
     var key = document.getElementById('candidate_key').value;

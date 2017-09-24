@@ -20,3 +20,4 @@ function addCandidateTest() {
 
     //return res.toString()
 }
+

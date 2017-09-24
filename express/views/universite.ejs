@@ -4,34 +4,83 @@
   <title>Univeristy Registrar Tool</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
 </head>
 
 <body class="container">
-  <h1>University Registrar</h1>
+
+  <!-- Navigation -->
+    <nav style="background-color:black" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../UITemplate/index.html">
+                  <span class="glyphicon glyphicon-fire"></span> 
+                  Cryptocreditor
+                </a>
+            </div>
+        </div><!-- /.container -->
+    </nav>
+
+
+
+  <h1 style = "margin-top: 100px" >University Registrar</h1>
   <div class="table-responsive">
     <table id="myTable", class="table table-bordered">
       <thead>
         <tr>
-          <th>Degree Candidate Name</th>
-          <th>Did Graduate</th>
+          <th>Degree Holder/Candidate Name</th>
+          <th>Degree Type</th>
+          <th>Completed</th>
+          <th>Field of Study</th>
+          <th>Year Earned/Expected</th>
+          <th>GPA</th>
         </tr>
       </thead>
       
         <% students.forEach(function(student) { %>
             <tr>
               <td><%= student.name %> </td>
-              <td><%= student.did_graduate %></td>
+              <td><%= student.degree_type %> </td>
+              <td><%= student.completed %> </td>
+              <td><%= student.field_of_study %> </td>
+              <td><%= student.year %> </td>
+              <td><%= student.gpa %> </td>
             </tr>
         <% }); %>
-      
       
     </table>
   </div>
 
- <form action="/student" method="POST">
+ <form action="/send_info_university" method="POST">
 
-  <input type="text" placeholder="Name" id="candidate_name" name="name"/>
-  <input type="text" placeholder = "Did Graduate (Y/N)" id="did_graduate" name="did_graduate"/>
+  <input type="text" placeholder="Name" id="name" name="name"/>
+  <input type="text" placeholder = "Field of Study" id="field_of_study" name="field_of_study"/>
+  <select type="text" id="degree_type" name="degree_type">
+    <option value="other">Other</option>
+    <option value="ged">G.E.D.</option>
+    <option value="ba">BA</option>
+    <option value="ba">BS</option>
+    <option value="ma">MA</option>
+    <option value="ma">MS</option>
+    <option value="mba">MBA</option>
+    <option value="pmh">MPH</option>
+    <option value="md">MD</option>
+    <option value="jd">JD</option>
+    <option value="phd">PhD</option>
+
+  </select>
+  <select type="text" id="completed" name="completed">
+    <option value="complete">Complete</option>
+    <option value="pending">Pending</option>
+  </select>
+  <input type="text" placeholder="Year Earned" id="year" name="year"/>
 
   <button onclick="" type= "submit" class="btn btn-primary">Add Degree Candidate</button>
 </form>
