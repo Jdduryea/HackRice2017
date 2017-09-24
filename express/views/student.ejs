@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  	<title>Student Portal</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../UITemplate/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="../UITemplate/css/custom.css" rel="stylesheet">
+
+    <!-- Custom Fonts from Google -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  	<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+
+
+<body style = >
+	<!-- Navigation -->
+    <nav style="background-color:black" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../UITemplate/index.html">
+                	<span class="glyphicon glyphicon-fire"></span> 
+                	Crestone
+                </a>
+            </div>
+        </div><!-- /.container -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 style="color:white">Decentralizing  Data</h1>
+                <p style="font-size: 25px">Instantly verify academic degrees with blockchain technology</p>
+                
+                <a href="#" class="btn btn-primary btn-lg">Employers</a>
+                <a href="#" class="btn btn-primary btn-lg">Universities</a>
+            
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+
+    <section class="intro">
+	<div data-role="page" style="margin-top: 50px">
+
+
+	  <div data-role="main" class="ui-content">
+	    
+	    <h1>Student Portal</h1>
+  		<div style = "max-width: 600px; text-align: center;">
+  			<input type="text" size = "30"  placeholder="Name" id="candidate_name" />
+  			<input type="text" size = "30" placeholder = "Key" id="candidate_key" />	
+  		</div>
+  		
+
+	    <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Send Data</a>
+
+	    <div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;">
+	      <!-- <form method="post" action="/action_page_post.php"> -->
+	      <form action = "/send_info" method="POST">
+	        <div>
+	          <h3>What information would you like to send?</h3>
+	          student.{name, degree_type, completed, year, field_of_study, gpa}
+	          
+
+              <label for="degree_type">Degree Type (4.0)</label>
+              <input type="checkbox" name="degree_type" id="degree_type" value="1" data-mini="true">
+
+	          <label for="gpa">College GPA (4.0)</label>
+	          <input type="checkbox" name="gpa" id="gpa" value="1" data-mini="true">
+	          
+	         
+	          <label for="field_of_study">Field Of Study (Computer Science)</label>
+	          <input type="checkbox" name="field_of_study" id="field_of_study" value="1" data-mini="true">
+	          
+	          <label for="school">University (Rice University)</label>
+	          <input type="checkbox" name="school" id="school" value="1" data-mini="true">
+
+
+	           <label for="email" class="ui-hidden-accessible">Reciever Email:</label>
+	          <input type="email" name="email" id="email" placeholder="email to send information to">
+	          
+	          <input onclick="alert('Your data was sent!')" type="submit" data-inline="true" value="Send">
+	        </div>
+	      </form>
+	    </div>
+	  </div>
+
+	</div> 
+	</section>
+
+
+</body>
+
+</html>
