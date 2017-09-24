@@ -3,8 +3,8 @@ const app = express()
 const bodyParser= require('body-parser')
 
 var fs = require('fs')
-var contractJSON = JSON.parse(fs.readFileSync('./build/contracts/CredentialStore.json'))
-var accountConfig = JSON.parse(fs.readFileSync('./build/accounts.json'))
+var contractJSON = JSON.parse(fs.readFileSync('../build/contracts/CredentialStore.json'))
+var accountConfig = JSON.parse(fs.readFileSync('../build/accounts.json'))
 
 var Web3 = require('web3')
 var web3provider = new Web3.providers.HttpProvider("http://localhost:8545")
@@ -82,11 +82,11 @@ app.post('/send_info_university', (req, res) => {
 })
 
 app.post('/send_info_student', (req, res) => {
-  
-  var studentKey = req.body.key;
+  var studentKey = req.body.candidate_key;
+  console.log(studentKey);
   var instancePromise = CredentialStore.deployed();
   var studentName = instancePromise.then((instance) => instance.studentMap[studentKey].name.call());
- console.log(studentName)
+  console.log(studentName)
 })
 
 app.listen(3000, function () {
