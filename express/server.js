@@ -28,16 +28,25 @@ catch(er){
 
 })
 
+ 
+
+
+
 app.get('/auth', function(req, res){
   try{
-
     res.render('auth.ejs');
 }
 catch(er){
+  console.log("something is wrong");
   console.log(er)
 }
 
 })
+
+
+
+
+
 
 app.get('/student', function(req, res){
   try{
@@ -55,19 +64,12 @@ catch(er){
 
 
 
-app.get('/university', function(req, res){
+app.get('/university', async function(req, res){
   try{
-    //res.sendFile(__dirname + '/university.html')
-  //console.log(CredentialStore)
-  	var students = [
-        { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
-        { name: 'Johnathon Berry', degree_type: 'BA', completed: false, year: 2020, field_of_study: 'Mechanical Engineering', gpa: 220},
-
-
-    ];
-
     res.render('universite.ejs', {
-        students: students
+      universityAddr: req.body.universityAddr, 
+      universityName: req.body.universityName, 
+      students: req.body.students
     });
 }
 catch(er){
@@ -79,7 +81,48 @@ catch(er){
 
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.post('/send_info_university', (req, res) => {
+
+app.post('/send_info_university', async (req, res) => {
+  // Write thing
+  // REturn array
+  var contractInstance = await CredentialStore.deployed();
+  
+  var infoObj = {};
+
+  infoObj.name = req.body.name;
+  infoObj.degree_type = req.body.degree_type;
+  infoObj.completed = (req.body.completed == "true");
+  infoObj.field_of_study = req.body.field_of_study;
+  infoObj.year = parseInt(req.body.year);
+  infoObj.gpa = parseInt(req.body.gpa);
+
+  var universityAddr = req.body.universityAddr;
+
+  var studentAddr = await contractInstance.getStudentAddr.call(infoObj.name);
+
+  // console.log(studentAddr);
+  // console.log(infoObj);
+  // console.log(req.body.universityAddr);
+
+  await contractInstance.updateDegreeType(studentAddr, infoObj.degree_type, {from: universityAddr});  
+  await contractInstance.updateCompleted(studentAddr, infoObj.completed, {from: universityAddr});  
+  await contractInstance.updateYearOfGraduation(studentAddr, infoObj.year, {from: universityAddr});  
+  await contractInstance.updateFieldOfStudy(studentAddr, infoObj.field_of_study, {from: universityAddr});  
+  await contractInstance.updateGPA(studentAddr, infoObj.gpa, {from: universityAddr});  
+
+  // await contractInstance.update(
+  //   studentAddr, 
+  //   infoObj.degree_type, 
+  //   infoObj.completed, 
+  //   infoObj.year,
+  //   infoObj.field_of_study,
+  //   infoObj.gpa,
+  //   {from: req.body.universityAddr}
+  // );
+
+  res.render('universite.ejs', {
+    universityAddr: universityAddr, universityName: req.body.universityName, students: [infoObj]
+  });
  
 })
 
@@ -98,28 +141,31 @@ app.post('/send_info_student', async (req, res) => {
   infoObj.year = await contractInstance.getDegreeType.call(studentKey, uniName);
   infoObj.field_of_study = await contractInstance.getFieldOfStudy.call(studentKey, uniName);
   infoObj.gpa = await contractInstance.getGPA.call(studentKey, uniName);
-  // .then((instance) => contractInstance = instance)
-  // .then(() => contractInstance.getName.call("0x69cfd1268d7bb3ed1a880be325d1f94250a29715"))
-  // .then((result) => name = result);
 
-  console.log(infoObj); 
-
-  // .then(() => contractInstance.getDegreeType.call(studentKey, uniName))
-  // .then((degreeType) => studentDegType = degreeType)
-  // .then(() => contractInstance.getCompleted.call(studentKey, uniName))
-  // .then((completedBool) => completedFlag = completedBool)
-  // .then(() => contractInstance.getDegreeType.call(studentKey, uniName))
-  // .then((result) => gradYear = result)
-  // .then(() => contractInstance.getFieldOfStudy.call(studentKey, uniName))
-  // .then((result) => fieldOfStudy = result)
-  // .then(() => contractInstance.getGPA.call(studentKey, uniName))
-  // .then((result) => gpaStat = result);
-
-  // var info = [{name : studentName, degree_type: studentDegType, completed : completedFlag, year: gradYear, field_of_study: fieldOfStudy, gpa: gpaStat}];
-  // console.log(info);
+  // console.log(infoObj); 
   res.render('student.ejs', {info: [infoObj]});
 })
+
+app.post('/auth_post', async (req, res) => {
+ var univAddr = req.body.private_key;
+ var contractInstance = await CredentialStore.deployed();
+ var universityName = await contractInstance.accreditedUniversities.call(univAddr);
+ // console.log(universityName);
+ var students = [
+        { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
+        { name: 'Johnathon Berry', degree_type: 'BA', completed: false, year: 2020, field_of_study: 'Mechanical Engineering', gpa: 220},
+   ];
+ res.render('universite.ejs', {universityAddr: univAddr, universityName: universityName, students : students})
+})
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
+
+
+
+
+
+
+

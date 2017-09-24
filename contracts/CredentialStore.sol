@@ -19,6 +19,9 @@ contract CredentialStore {
     
     // public address mapped to student which owns domain
     mapping(address => Student) public studentMap;
+
+    // TEMP
+    mapping(bytes32 => address) public studentMap2;
     
     // access credentials with this procedure:
     // credential = contract.studentMap[studentAddr].universityMap[universityName]
@@ -46,26 +49,52 @@ contract CredentialStore {
         string _studentName) onlyOwner public 
     {
         studentMap[_studentAddr].name = _studentName;
+        studentMap2[sha3(_studentName)] = _studentAddr;
+    }
+
+    function getStudentAddr(string _studentName) public returns (address) {
+        return studentMap2[sha3(_studentName)];
     }
     
     // UNIVERSITY INTERFACE
-    function update(
-        address _studentAddr, 
-        string _degreeType, 
-        bool _completed,
-        uint _yearOfGraduation,
-        string _fieldOfStudy,
-        uint _gpa) external 
-    {
+    function updateDegreeType(address _studentAddr, string _degreeType) {
         string universityName = accreditedUniversities[msg.sender];
-        studentMap[_studentAddr].universityMap[universityName] = UniversityCredential({
-            degreeType: _degreeType,
-            completed: _completed,
-            yearOfGraduation: _yearOfGraduation,
-            fieldOfStudy: _fieldOfStudy,
-            gpa: _gpa
-        });
+        studentMap[_studentAddr].universityMap[universityName].degreeType = _degreeType;
     }
+    function updateCompleted(address _studentAddr, bool _completed) {
+        string universityName = accreditedUniversities[msg.sender];
+        studentMap[_studentAddr].universityMap[universityName].completed = _completed;
+    }
+    function updateYearOfGraduation(address _studentAddr, uint _yearOfGraduation) {
+        string universityName = accreditedUniversities[msg.sender];
+        studentMap[_studentAddr].universityMap[universityName].yearOfGraduation = _yearOfGraduation;
+    }
+    function updateFieldOfStudy(address _studentAddr, string _fieldOfStudy) {
+        string universityName = accreditedUniversities[msg.sender];
+        studentMap[_studentAddr].universityMap[universityName].fieldOfStudy = _fieldOfStudy;
+    }
+    function updateGPA(address _studentAddr, uint _gpa) {
+        string universityName = accreditedUniversities[msg.sender];
+        studentMap[_studentAddr].universityMap[universityName].gpa = _gpa;
+    }
+
+    // function update(
+    //     address _studentAddr, 
+    //     string _degreeType, 
+    //     bool _completed,
+    //     uint _yearOfGraduation,
+    //     string _fieldOfStudy,
+    //     uint _gpa) external 
+    // {
+    //     string universityName = accreditedUniversities[msg.sender];
+    //     studentMap[_studentAddr].universityMap[universityName] = UniversityCredential({
+    //         degreeType: _degreeType,
+    //         completed: _completed,
+    //         yearOfGraduation: _yearOfGraduation,
+    //         fieldOfStudy: _fieldOfStudy,
+    //         gpa: _gpa
+    //     });
+    // }
 
     function getName(address _studentAddr) constant returns (string) {
         return studentMap[_studentAddr].name;
