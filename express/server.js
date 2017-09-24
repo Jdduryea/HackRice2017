@@ -32,9 +32,6 @@ catch(er){
 app.get('/university', function(req, res){
   try{
     //res.sendFile(__dirname + '/university.html')
-  const contractArtifact = require('../build/contracts/CredentialStore.json')
-  const truffleContractFactory = require('truffle-contract')
-  const CredentialStore = truffleContractFactory(contractArtifact)
   //console.log(CredentialStore)
   	var students = [
         { name: 'Kunal Shah', degree_type: 'BA', completed: false, year: 2018, field_of_study: 'Computer Science', gpa: 400},
@@ -56,11 +53,11 @@ catch(er){
 
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.post('/student', (req, res) => {
+app.post('/send_info_university', (req, res) => {
  console.log(req.body)
 })
 
-app.post('/send_info', (req, res) => {
+app.post('/send_info_student', (req, res) => {
  console.log(req.body)
 })
 app.listen(3000, function () {
